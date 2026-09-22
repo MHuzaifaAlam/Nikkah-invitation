@@ -43,7 +43,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
     const node = ref.current;
     if (!node) return;
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+      if (entry?.isIntersecting) {
         node.classList.add("is-visible");
         observer.disconnect();
       }
