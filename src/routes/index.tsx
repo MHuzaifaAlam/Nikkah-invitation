@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUp, CalendarDays, Clock3, MapPin, Music2, Pause, Sparkles } from "lucide-react";
 
+import maulaMeryMp3 from "../assets/Maulamery.mp3";
 import palaceImage from "../assets/rose-palace-courtyard.jpg";
 import { Button } from "../components/ui/button";
 
@@ -16,7 +17,7 @@ const weddingData = {
   rsvpLink: "",
   groomImage: "/images/groom.jpg",
   brideImage: "/images/bride.jpg",
-  music: "/music/wedding.mp3",
+  music: maulaMeryMp3,
 };
 
 export const Route = createFileRoute("/")({
@@ -74,9 +75,21 @@ function Index() {
     return () => window.removeEventListener("scroll", update);
   }, []);
 
-  const openInvitation = () => {
+  const openInvitation = async () => {
     if (opened) return;
     setOpened(true);
+    setMusicOn(true);
+
+    const audio = audioRef.current;
+    if (audio) {
+      audio.currentTime = 0;
+      try {
+        await audio.play();
+      } catch {
+        setMusicOn(false);
+      }
+    }
+
     window.setTimeout(() => document.getElementById("welcome")?.scrollIntoView({ behavior: "smooth" }), 1700);
   };
 
