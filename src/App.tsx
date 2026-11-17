@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import {
   CalendarDays,
   CalendarPlus,
@@ -11,9 +10,9 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-import maulaMeryMp3 from "../assets/Maulamery.mp3";
-import palaceImage from "../assets/rose-palace-courtyard.jpg";
-import { createGoogleCalendarUrl, createNikahCalendarFile, nikahEvent } from "../lib/calendar";
+import maulaMeryMp3 from "./assets/Maulamery.mp3";
+import palaceImage from "./assets/rose-palace-courtyard.jpg";
+import { createGoogleCalendarUrl, createNikahCalendarFile, nikahEvent } from "./lib/calendar";
 
 const weddingData = {
   groom: "Huzaifa",
@@ -26,27 +25,6 @@ const weddingData = {
   venue: "To Be Announced",
   music: maulaMeryMp3,
 };
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Huzaifa & Bismah — Nikkah Invitation" },
-      {
-        name: "description",
-        content:
-          "With love and gratitude, Huzaifa and Bismah invite you to celebrate their Nikkah.",
-      },
-      { property: "og:title", content: "Huzaifa & Bismah — Nikkah Invitation" },
-      {
-        property: "og:description",
-        content: "Join us in celebrating a new beginning, with love, prayers, and blessings.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
 
 function Ornament() {
   return (
@@ -141,7 +119,7 @@ function Countdown() {
   );
 }
 
-function Index() {
+export default function App() {
   const [opened, setOpened] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
   const [showSkip, setShowSkip] = useState(false);

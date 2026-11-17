@@ -1,9 +1,10 @@
-// This project uses the TanStack Start/Vite setup generated for the invitation app.
-// Keep the runtime config intact so the app can build and run correctly.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  tanstackStart: {
-    server: { entry: "server" },
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    tsconfigPaths: true,
   },
 });

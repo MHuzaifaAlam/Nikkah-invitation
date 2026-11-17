@@ -16,3 +16,13 @@ A luxury pink wedding invitation experience for Muhammad Huzaifa Alam and Bisma 
 npm install
 npm run dev
 ```
+
+## Build and deploy
+
+```sh
+npm run build
+npm run preview
+```
+
+This is a client-side React app built with Vite. Deploy the generated `dist/`
+directory to Vercel or another static hosting provider.
