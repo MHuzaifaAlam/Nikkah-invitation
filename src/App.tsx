@@ -184,15 +184,14 @@ export default function App() {
     if (opened) return;
     setOpened(true);
     setShowSkip(true);
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    openingTimerRef.current = window.setTimeout(
-      () => {
-        setShowSkip(false);
-        setOpeningComplete(true);
-        openingTimerRef.current = null;
-      },
-      reducedMotion ? 0 : 2800,
-    );
+    const openingDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? 0
+      : 2800;
+    openingTimerRef.current = window.setTimeout(() => {
+      setShowSkip(false);
+      setOpeningComplete(true);
+      openingTimerRef.current = null;
+    }, openingDuration);
 
     const audio = audioRef.current;
     if (audio) {
@@ -281,9 +280,6 @@ export default function App() {
           <div className="fold fold-bottom" />
           <div className="invitation-card" aria-hidden={!opened}>
             <p>Bismillah-ir-Rahman-ir-Raheem</p>
-            <span>
-              {weddingData.groom} <i>&</i> {weddingData.bride}
-            </span>
           </div>
           <div className="seal-wrap">
             <button
@@ -296,9 +292,6 @@ export default function App() {
                 H <i>&</i> B
               </span>
             </button>
-            <h1>
-              {weddingData.groom} <i>&</i> {weddingData.bride}
-            </h1>
             <button className="tap-open" type="button" onClick={openInvitation}>
               Open your invitation
             </button>

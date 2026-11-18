@@ -170,6 +170,10 @@ button {
   overflow: clip;
   background: var(--background);
 }
+.invitation:not(.is-revealed) {
+  height: 100svh;
+  overflow: hidden;
+}
 .scroll-progress {
   position: fixed;
   inset: 0 0 auto;
@@ -1396,7 +1400,7 @@ footer span {
     transform 0.4s ease;
   backdrop-filter: blur(12px);
 }
-.is-open .site-nav {
+.is-revealed .site-nav {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
