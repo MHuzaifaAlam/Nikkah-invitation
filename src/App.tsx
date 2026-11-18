@@ -4,6 +4,7 @@ import {
   Clock3,
   MapPin,
   Music2,
+  Moon,
   Pause,
   SkipForward,
   X,
@@ -185,7 +186,7 @@ export default function App() {
     setOpened(true);
     setShowSkip(true);
     const openingDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ? 0
+      ? 1800
       : 2800;
     openingTimerRef.current = window.setTimeout(() => {
       setShowSkip(false);
@@ -353,7 +354,7 @@ export default function App() {
         <section id="dua" className="chapter dua-section pattern-section">
           <Reveal className="dua-card">
             <div className="prayer-medallion" aria-hidden="true">
-              ☾
+              <Moon />
             </div>
             <p className="eyebrow">A prayer for our new beginning</p>
             <h2>A heartfelt Dua</h2>
