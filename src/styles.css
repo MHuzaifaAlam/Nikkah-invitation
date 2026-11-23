@@ -1747,7 +1747,34 @@ footer span {
   color: var(--rose-gold);
   stroke-width: 1.5;
 }
+.venue-map-link {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  color: var(--rose-gold);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.venue-map-link:hover {
+  background: color-mix(in oklab, var(--champagne) 22%, transparent);
+  color: var(--deep-rose);
+}
+.venue-map-link svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  stroke-width: 1.5;
+}
+.venue-map-link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--deep-rose);
+  outline-offset: 4px;
+}
 .event-detail div {
+  min-width: 0;
   display: grid;
   gap: 0.45rem;
 }
@@ -1764,6 +1791,7 @@ footer span {
   font-size: clamp(1rem, 1.7vw, 1.15rem);
   font-weight: 600;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .event-note {
   margin: 2rem 0 0;

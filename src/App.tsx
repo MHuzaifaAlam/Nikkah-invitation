@@ -23,7 +23,7 @@ const weddingData = {
   date: nikahEvent.dateLabel,
   day: nikahEvent.dayLabel,
   time: nikahEvent.timeLabel,
-  venue: "To Be Announced",
+  venue: nikahEvent.venue,
   music: maulaMeryMp3,
 };
 
@@ -398,7 +398,16 @@ export default function App() {
                 </div>
               </div>
               <div className="event-detail">
-                <MapPin aria-hidden="true" />
+                <a
+                  className="venue-map-link"
+                  href={nikahEvent.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Blessings Marriage Hall in Google Maps"
+                  title="Open venue in Google Maps"
+                >
+                  <MapPin aria-hidden="true" />
+                </a>
                 <div>
                   <span>Venue</span>
                   <strong>{weddingData.venue}</strong>
