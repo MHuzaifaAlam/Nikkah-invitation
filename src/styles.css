@@ -1793,6 +1793,15 @@ footer span {
   line-height: 1.4;
   overflow-wrap: anywhere;
 }
+.event-directions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.event-directions .add-calendar-button {
+  margin-top: 0;
+  text-decoration: none;
+}
 .event-note {
   margin: 2rem 0 0;
   color: var(--muted-foreground);

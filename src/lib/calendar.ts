@@ -5,13 +5,14 @@ export const nikahEvent = {
   timeZone: "Asia/Karachi",
   dateLabel: "13 December 2026",
   dayLabel: "Sunday",
-  timeLabel: "1:00 PM PKT",
+  timeLabel: "12:00 PM – 4:00 PM PKT",
   venue:
     "Blessings Marriage Hall, Punj Peer Darbar, Main Canal Road Bridge, Tajpura, Lahore, Pakistan",
   mapsUrl:
     "https://www.google.com/maps/place/Blessings+Marriage+Hall/@31.5651422,74.3969203,17z/data=!4m6!3m5!1s0x39190500485d6b23:0xe578f69b5d7aa20f!8m2!3d31.5651422!4d74.3969203!16s%2Fg%2F11y5_59m03?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
-  localStart: "20261213T130000",
-  utcStartTimestamp: Date.UTC(2026, 11, 13, 8),
+  localStart: "20261213T120000",
+  localEnd: "20261213T160000",
+  utcStartTimestamp: Date.UTC(2026, 11, 13, 7),
 };
 
 function escapeCalendarText(value: string) {
@@ -70,6 +71,7 @@ export function createNikahCalendarFile(now = new Date()) {
     `DTSTAMP:${timestamp}`,
     "SEQUENCE:0",
     `DTSTART;TZID=${nikahEvent.timeZone}:${nikahEvent.localStart}`,
+    `DTEND;TZID=${nikahEvent.timeZone}:${nikahEvent.localEnd}`,
     `SUMMARY:${escapeCalendarText(nikahEvent.title)}`,
     `DESCRIPTION:${escapeCalendarText(nikahEvent.description)}`,
     `LOCATION:${escapeCalendarText(nikahEvent.venue)}`,
@@ -85,8 +87,7 @@ export function createGoogleCalendarUrl() {
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: nikahEvent.title,
-    // The template requires an end; matching it to the start avoids inventing a duration.
-    dates: `${nikahEvent.localStart}/${nikahEvent.localStart}`,
+    dates: `${nikahEvent.localStart}/${nikahEvent.localEnd}`,
     ctz: nikahEvent.timeZone,
     details: nikahEvent.description,
     location: nikahEvent.venue,

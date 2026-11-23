@@ -5,6 +5,7 @@ import {
   MapPin,
   Music2,
   Moon,
+  Navigation,
   Pause,
   SkipForward,
   X,
@@ -413,6 +414,17 @@ export default function App() {
                   <strong>{weddingData.venue}</strong>
                 </div>
               </div>
+            </div>
+            <div className="event-directions">
+              <a
+                className="add-calendar-button"
+                href={nikahEvent.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Navigation aria-hidden="true" />
+                Get Directions
+              </a>
             </div>
             <p className="event-note">We look forward to celebrating with you.</p>
             <a className="back-to-top" href="#welcome">
