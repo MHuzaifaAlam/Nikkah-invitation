@@ -142,6 +142,23 @@ export default function App() {
   );
 
   useEffect(() => {
+    const pauseMusic = () => {
+      audioRef.current?.pause();
+      setMusicOn(false);
+    };
+    const pauseWhenHidden = () => {
+      if (document.visibilityState === "hidden") pauseMusic();
+    };
+
+    document.addEventListener("visibilitychange", pauseWhenHidden);
+    window.addEventListener("pagehide", pauseMusic);
+    return () => {
+      document.removeEventListener("visibilitychange", pauseWhenHidden);
+      window.removeEventListener("pagehide", pauseMusic);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!calendarOpen) return;
 
     const dialog = calendarDialogRef.current;
@@ -200,6 +217,10 @@ export default function App() {
       audio.currentTime = 0;
       try {
         await audio.play();
+        if (document.visibilityState === "hidden") {
+          audio.pause();
+          return;
+        }
         setMusicOn(true);
       } catch {
         setMusicOn(false);
@@ -225,6 +246,10 @@ export default function App() {
     }
     try {
       await audio.play();
+      if (document.visibilityState === "hidden") {
+        audio.pause();
+        return;
+      }
       setMusicOn(true);
     } catch {
       setMusicOn(false);
